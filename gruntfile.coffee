@@ -57,7 +57,8 @@ module.exports = (grunt) ->
     jekyll:
       server:
         options:
-          server_port: 4000
+          serve: true
+          port: 4000
           base: '_site'
           baseurl: '/manos'
 
