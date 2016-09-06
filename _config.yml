@@ -35,3 +35,5 @@ exclude:
   - "package.json"
   - "bower_components"
   - "bower.json"
+  - "node_modules"
+  - "package.json"
