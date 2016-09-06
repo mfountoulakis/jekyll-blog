@@ -1,0 +1,17 @@
+{
+  "name": "manos",
+  "homepage": "https://github.com/mfountoulakis/manos",
+  "authors": [
+    "Manos Fountoulakis <fountoulakismanos@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

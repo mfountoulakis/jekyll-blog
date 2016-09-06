@@ -30,3 +30,8 @@ theme: minima
 
 include:
   - .nojekyll
+exclude:
+  - "node_modules"
+  - "package.json"
+  - "bower_components"
+  - "bower.json"
