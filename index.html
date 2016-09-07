@@ -8,6 +8,7 @@ layout: page
 
   <ul class="post-list">
     {% for post in site.posts %}
+    <div class="card-panel grey lighten-5 z-depth-1">
       <li>
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
@@ -15,6 +16,7 @@ layout: page
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}</a>
         </h2>
       </li>
+    </div>
     {% endfor %}
   </ul>
 
