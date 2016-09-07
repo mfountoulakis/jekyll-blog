@@ -28,14 +28,20 @@ $on-laptop:        800px;
 $hero-text:        #ffffff;
 
 section.hero {
-  background-color: #ee6e73;
+  // background-color: #ee6e73;
   z-index: 1;
   color: $hero-text ;
+  height: 300px;
+  margin: 0px 0px 50px 0px;
+  padding: 50px 0px 50px 0px
+
 }
 
-.main-nav{
-  z-index: 100
+nav.main-nav.shadow{
+  position: relative;
 }
+
+
 // Minima also includes a mixin for defining media queries.
 // Use media queries like this:
 // @include media-query($on-palm) {

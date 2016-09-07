@@ -1,28 +1,30 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Home Page</title>
-    <link rel="stylesheet" href="{{site.baseurl}}/vendor/css/materialize.min.css">
-    <link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
+<head>
+  <meta charset="utf-8">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="{{site.baseurl}}/vendor/css/materialize.min.css">
+  <link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
 
-  </head>
-  <body>
-    <header>
-        <nav class="main-nav">
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/blog.html">Blog</a></li>
-          </ul>
-        </nav>
-    </header>
-    <div class="content container">
-      {{ content }}
-    </div>
-    <footer>
-      <div class="container">
-        <p class="center-text"> <a href="http://cloudcannon.com">Created by CloudCannon</a></p>
+</head>
+<body>
+  <header>
+    <nav class="main-nav shadow cyan darken-1">
+      <div class="content container">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/blog.html">Blog</a></li>
+        </ul>
       </div>
-    </footer>
-  </body>
+    </nav>
+  </header>
+  <!-- <div class="content container"> -->
+  {{ content }}
+  <!-- </div> -->
+  <footer>
+    <div class="container">
+      <p class="center-text"> <a href="http://cloudcannon.com">Created by CloudCannon</a></p>
+    </div>
+  </footer>
+</body>
 </html>
