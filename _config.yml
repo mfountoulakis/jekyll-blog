@@ -23,6 +23,7 @@ baseurl: "/manos" # the subpath of your site, e.g. /blog
 url: "http://mfountoulakis.github.io" # the base hostname & protocol for your site
 twitter_username: jekyllrb
 github_username:  jekyll
+paginate: 5
 
 # Build settings
 markdown: kramdown
@@ -38,3 +39,5 @@ exclude:
   - "node_modules"
   - "package.json"
   - "Gruntfile.coffee"
+gems:
+ - "jekyll-paginate"
