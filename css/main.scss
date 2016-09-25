@@ -41,7 +41,20 @@ nav.main-nav.shadow{
   position: relative;
 }
 
+.page-margin{
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
 
+span.post-title{
+  color: $grey-color;
+  font-size: 16px;
+}
+// .page-footer{
+//   position: relative;
+//   bottom: 0;
+//   width: 100%;
+// }
 // Minima also includes a mixin for defining media queries.
 // Use media queries like this:
 // @include media-query($on-palm) {
