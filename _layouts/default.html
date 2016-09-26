@@ -12,9 +12,9 @@
     <nav class="main-nav shadow cyan darken-1">
       <div class="content container">
         <ul>
-          <li><a href="{{site.baseurl}}/">Home</a></li>
-          <li><a href="{{site.baseurl}}/blog.html">Blog</a></li>
-          <li><a href="{{site.baseurl}}/about.html">About</a></li>
+          <li {% if page.url == "/" %}class="active"{% endif %}><a href="{{site.baseurl}}/">Home</a></li>
+          <li {% if page.url == "/blog.html" %}class="active"{% endif %}><a href="{{site.baseurl}}/blog.html">Blog</a></li>
+          <li {% if page.url == "/about.html" %}class="active"{% endif %}><a href="{{site.baseurl}}/about.html">About</a></li>
         </ul>
       </div>
     </nav>
