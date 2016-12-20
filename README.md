@@ -1,2 +1,6 @@
 # manos
-My prtfolio site built with Jekyll.
+My portfolio site built with Jekyll.
+___
+
+# setup & dependencies
+___
