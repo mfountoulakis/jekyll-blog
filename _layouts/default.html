@@ -5,47 +5,55 @@
   <title>Home Page</title>
   <link rel="stylesheet" href="{{site.baseurl}}/vendor/css/materialize.min.css">
   <link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.7/webcomponents-lite.min.js"></script>
+  <link rel="import" href="{{site.baseurl}}/vendor/icons/social-media-icons.html">
 
 </head>
 <body>
   <header>
-    <nav class="main-nav shadow cyan darken-1">
-      <div class="content container">
-        <ul>
-          <li {% if page.url == "/" %}class="active"{% endif %}><a href="{{site.baseurl}}/">Home</a></li>
-          <li {% if page.url == "/blog.html" %}class="active"{% endif %}><a href="{{site.baseurl}}/blog.html">Blog</a></li>
-          <li {% if page.url == "/about.html" %}class="active"{% endif %}><a href="{{site.baseurl}}/about.html">About</a></li>
+    <div class="navbar-fixed">
+
+      <nav class="main-nav shadow cyan darken-1">
+        <ul class="right hide-on-med-and-down">
+          <social-media-icons icon="github" color="#bada55" size="320"></social-media-icons>
+          <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
+          <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
+          <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
         </ul>
-      </div>
-    </nav>
-  </header>
-  <!-- <div class="content container"> -->
-  {{ content }}
-  <!-- </div> -->
-  <footer class="page-footer orange lighten-1">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Footer Content</h5>
-          <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-        </div>
-        <div class="col l4 offset-l2 s12">
-          <h5 class="white-text">Links</h5>
+        <div class="content container">
           <ul>
-            <!-- <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li> -->
+            <li {% if page.url == "/" %}class="active"{% endif %}><a href="{{site.baseurl}}/">Home</a></li>
+            <li {% if page.url == "/blog.html" %}class="active"{% endif %}><a href="{{site.baseurl}}/blog.html">Blog</a></li>
+            <li {% if page.url == "/about.html" %}class="active"{% endif %}><a href="{{site.baseurl}}/about.html">About</a></li>
           </ul>
         </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
+      </nav>
+    </header>
+    <!-- <div class="content container"> -->
+    {{ content }}
+    <!-- </div> -->
+    <footer class="page-footer orange lighten-1">
       <div class="container">
-        © 2014 Copyright Text
-        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Footer Content</h5>
+            <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Links</h5>
+            <ul>
+              <!-- <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li> -->
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-  </footer>
-</body>
-</html>
+      <div class="footer-copyright">
+        <div class="container">
+          All content copyright manos © 2016 Copyright Text
+        </div>
+      </div>
+    </footer>
+  </body>
+  </html>

@@ -17,6 +17,32 @@ module.exports = (grunt) ->
           src: "jquery.min.js"
           dest: "vendor/js/"
         }]
+      social_icons:
+        files: [{
+          expand: true
+          cwd: "bower_components/social-media-icons/"
+          src: "social-media-icons.html"
+          dest: "vendor/icons"
+        }]
+      polymer:
+        files: [{
+          expand: true
+          cwd: "bower_components/polymer/"
+          src: "polymer.html"
+          dest: "vendor/polymer"
+        },
+        {
+          expand: true
+          cwd: "bower_components/polymer/"
+          src: "polymer-mini.html"
+          dest: "vendor/polymer"
+        },
+        {
+          expand: true
+          cwd: "bower_components/polymer/"
+          src: "polymer-micro.html"
+          dest: "vendor/polymer"
+        }]
       materialize:
         files: [{
           expand: true
