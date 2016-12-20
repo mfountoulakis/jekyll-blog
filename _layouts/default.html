@@ -12,15 +12,13 @@
 <body>
   <header>
     <div class="navbar-fixed">
-
       <nav class="main-nav shadow cyan darken-1">
-        <ul class="right hide-on-med-and-down">
-          <social-media-icons icon="github" color="#bada55" size="320"></social-media-icons>
-          <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
-          <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
-          <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
-        </ul>
         <div class="content container">
+          <ul class="right hide-on-med-and-down">
+            <li><a href="github"><social-media-icons icon="github" color="#fdfdfd" size="25"></social-media-icons></a></li>
+            <li><a href="linkedin"><social-media-icons icon="linkedin" color="#fdfdfd" size="25"></social-media-icons></a></li>
+            <li><a href="spotify"><social-media-icons icon="spotify" color="#fdfdfd" size="25"></social-media-icons></a></li>
+          </ul>
           <ul>
             <li {% if page.url == "/" %}class="active"{% endif %}><a href="{{site.baseurl}}/">Home</a></li>
             <li {% if page.url == "/blog.html" %}class="active"{% endif %}><a href="{{site.baseurl}}/blog.html">Blog</a></li>
