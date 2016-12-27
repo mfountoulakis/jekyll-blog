@@ -29,6 +29,13 @@ paginate: 5
 markdown: kramdown
 theme: minima
 
+# Syntax highlighting
+highlighter: rouge
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
+
 include:
   - .nojekyll
 exclude:
@@ -41,3 +48,4 @@ exclude:
   - "Gruntfile.coffee"
 gems:
  - "jekyll-paginate"
+ - "jekyll-gist"

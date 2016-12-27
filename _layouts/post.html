@@ -2,6 +2,18 @@
 layout: blog_page
 comments: true
 ---
+
+<h2>{{page.title}}</h2>
+
+{% assign words = content | number_of_words %}
+<span class="ttr">
+{% if words < 360 %}
+  1 min read
+{% else %}
+  {{ words | divided_by:180 }} min read
+{% endif %}
+</span>
+
 <div class="card-panel grey lighten-5 z-depth-1">
   {{content}}
 </div>

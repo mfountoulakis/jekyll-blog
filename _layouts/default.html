@@ -12,46 +12,49 @@
 <body>
   <header>
     <div class="navbar-fixed">
-      <nav class="main-nav shadow cyan darken-1">
-        <div class="content container">
-          <ul class="right hide-on-med-and-down">
-            <li><a href="github"><social-media-icons icon="github" color="#fdfdfd" size="25"></social-media-icons></a></li>
-            <li><a href="linkedin"><social-media-icons icon="linkedin" color="#fdfdfd" size="25"></social-media-icons></a></li>
-            <li><a href="spotify"><social-media-icons icon="spotify" color="#fdfdfd" size="25"></social-media-icons></a></li>
-          </ul>
-          <ul>
-            <li {% if page.url == "/" %}class="active"{% endif %}><a href="{{site.baseurl}}/">Home</a></li>
-            <li {% if page.url == "/blog.html" %}class="active"{% endif %}><a href="{{site.baseurl}}/blog.html">Blog</a></li>
-            <li {% if page.url == "/about.html" %}class="active"{% endif %}><a href="{{site.baseurl}}/about.html">About</a></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-    <!-- <div class="content container"> -->
-    {{ content }}
-    <!-- </div> -->
-    <footer class="page-footer orange lighten-1">
-      <div class="container">
-        <div class="row">
-          <div class="col l6 s12">
-            <h5 class="white-text">Footer Content</h5>
-            <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-          </div>
-          <div class="col l4 offset-l2 s12">
-            <h5 class="white-text">Links</h5>
+      <nav class="shadow cyan darken-1">
+        <div class="nav-wrapper">
+          <div class="content container">
+            <ul class="right hide-on-med-and-down">
+              <li><a href="github"><social-media-icons icon="github" color="#fdfdfd" size="25"></social-media-icons></a></li>
+              <li><a href="linkedin"><social-media-icons icon="linkedin" color="#fdfdfd" size="25"></social-media-icons></a></li>
+              <li><a href="spotify"><social-media-icons icon="spotify" color="#fdfdfd" size="25"></social-media-icons></a></li>
+            </ul>
             <ul>
-              <!-- <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li> -->
+              <li {% if page.url == "/" %}class="active"{% endif %}><a href="{{site.baseurl}}/">Home</a></li>
+              <li {% if page.url == "/blog.html" %}class="active"{% endif %}><a href="{{site.baseurl}}/blog.html">Archive</a></li>
+              <li {% if page.url == "/about.html" %}class="active"{% endif %}><a href="{{site.baseurl}}/about.html">About</a></li>
             </ul>
           </div>
         </div>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-          All content copyright manos © 2016 Copyright Text
+      </nav>
+    </div>
+  </header>
+  <!-- <div class="content container"> -->
+  {{ content }}
+  <!-- </div> -->
+  <footer class="page-footer orange lighten-1">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Footer Content</h5>
+          <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <!-- <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li> -->
+          </ul>
         </div>
       </div>
-    </footer>
-  </body>
-  </html>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        All content copyright manos © 2016 Copyright Text
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,27 +1,28 @@
 ---
 layout: page
 ---
+{% highlight ruby %}
+  def show
+  @widget = Widget(params[:id])
+  respond_to do |format|
+    format.html # show.html.erb
+    format.json { render json: @widget }
+  end
+end
+{% endhighlight %}
 
 <div class="home">
-
-  <h1 class="page-heading">Posts</h1>
-
   <ul class="post-list">
     {% for post in paginator.posts %}
-    <div class="card-panel grey lighten-5 z-depth-1">
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}</a>
-        </h2>
-      </li>
-    </div>
+    <li>
+      <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> | <span class="post-title">{{ post.date | date_to_string }}</span>
+    </li>
+    <li>
+      {{ post.excerpt }}
+    </li>
     {% endfor %}
   </ul>
-
   <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
 </div>
 
 <!-- Pagination links -->
