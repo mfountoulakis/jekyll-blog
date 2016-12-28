@@ -56,7 +56,6 @@ DEPENDENCIES
   jekyll-gist
   jekyll-paginate
   minima
-  rouge
 
 RUBY VERSION
    ruby 2.3.1p112
