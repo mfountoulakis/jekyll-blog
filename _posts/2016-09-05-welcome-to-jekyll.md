@@ -8,10 +8,13 @@ excerpt_separator: <!-- excerpt -->
 ---
 Stripe makes it very easy for developers to process payments in their Rails apps.
 
-However, models and controllers can easily become overwrought with logic. We'll export this logic to service objects each designed to perform one particular task. Service objects are simply specialized classes designed to perform
+However, models and controllers can easily become overwrought with logic and there's no standard way to organize the different scenarios. In this post we'll export this logic to a series of chained service objects, each designed to perform one particular task.
+
+First, lets look at what's needed to charge customers with stipe. Stripe gives you the main components for creating a charge in their documentation https://stripe.com/docs/custom-form . 
+
 
 <!-- excerpt -->
-We'll instantiate
+We'll instantiate our CreateStripeCustomerService in our payment_controller.rb create method
 ```ruby
 def create
   @payment = Payment.create(payment_params)
