@@ -39,8 +39,8 @@ end
 ---
 When the **```CreateStripeCustomer```** service is instantiated, it is passed the payment instance as an argument. Since we're not calling a specific method, we'll call the method **```create_customer```** in the **```CreateStripeCustomer```** service initialize method.
 
-The Create customer service has two responsibilities:
-1. Create a new customer if **```stripe_customer_id```** is blank.
+The CreateCustomer service has two responsibilities:
+1. Create a new customer if the user's **```stripe_customer_id```** is blank.
 2. send the payment to the **```ChargeCreditCard```** service.
 
 Once the customer is created and **```stripe_customer_id```** is assigned to the user, the new service is instantiated, passing the payment as an argument, and calling the method **```charge_or_create_card```**.
@@ -51,7 +51,7 @@ ChargeCreditCard.new(payment = @payment).charge_or_create_card
 <br>
 #### Step 3: Charging the credit card.
 ---
-Finally, we can charge the user's credit card. On line 12, we'll find out if the Stripe token has been used. If not, it will be added to the customer's payment sources. Since Stripe tokens can only be used once, we'll be charging the card associated with the Stripe token (the source object), instead of the card token itself. The initialize method of our **```ChargeCreditCard```** service retrieves the card from the Stripe API and stores it in a variable.
+Finally, we can charge the user's credit card. On line 12, we'll find out if the Stripe token has been used. If not, it will be added to the customer's payment sources. Since Stripe tokens can only be used once, we'll be charging the card associated with the Stripe token (the source object), instead of the card token itself. The initialize method of our **```ChargeCreditCard```** service retrieves the card id from the Stripe API and stores it in a variable.
 
 ```ruby    
 @card = Stripe::Token.retrieve(@payment.stripe_token).card.id
