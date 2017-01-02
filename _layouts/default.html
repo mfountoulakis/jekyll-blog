@@ -8,12 +8,42 @@
   <link rel="stylesheet" href="{{site.baseurl}}/vendor/css/materialize.min.css">
   <link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
   <link rel="stylesheet" href="{{site.baseurl}}/css/syntax.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.7/webcomponents-lite.min.js"></script>
   <link rel="import" href="{{site.baseurl}}/vendor/icons/social-media-icons.html">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.7/webcomponents-lite.min.js"></script>
+  <script src="{{site.baseurl}}/vendor/js/jquery.min.js"></script>
+  <script src="{{site.baseurl}}/vendor/js/materialize.min.js"></script>
 </head>
 <body>
   <header>
-    <div class="navbar-fixed">
+    <!-- mobile menu -->
+    <div class="mobile-menu show-on-small hide-on-med-and-up container">
+      <div class="nav-wrapper">
+        <ul id="slide-out" class="side-nav">
+          <li><div class="userView">
+            <div class="background">
+              <img src="images/office.jpg">
+            </div>
+            <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
+            <a href="#!name"><span class="white-text name">John Doe</span></a>
+            <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+          </div></li>
+          <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+          <li><a href="#!">Second Link</a></li>
+          <li><div class="divider"></div></li>
+          <li><a class="subheader">Subheader</a></li>
+          <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+        </ul>
+        <ul>
+          <li>
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+          </li>
+        </ul>
+        <!-- mobile menu -->
+      </div>
+    </div>
+    <div class="navbar-fixed hide-on-small-only">
       <nav class="shadow white">
         <div class="nav-wrapper">
           <div class="content container">
@@ -34,7 +64,7 @@
   </header>
   <!-- <div class="content container"> -->
   <main>
-  {{ content }}
+    {{ content }}
   </main>
   <!-- </div> -->
   <footer class="page-footer orange lighten-1">
@@ -61,4 +91,10 @@
     </div>
   </footer>
 </body>
+<script>
+$(document).ready(function(){
+  $(".button-collapse").sideNav();
+  $('.collapsible').collapsible();
+});
+</script>
 </html>
