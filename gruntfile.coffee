@@ -55,6 +55,12 @@ module.exports = (grunt) ->
           cwd: "bower_components/materialize/dist/js/"
           src: "materialize.min.js"
           dest: "vendor/js/"
+        },
+        {
+          expand: true
+          cwd: "bower_components/materialize/dist/fonts/roboto"
+          src: "*",
+          dest: "vendor/fonts/roboto"
         }]
 
     exec:
