@@ -6,7 +6,7 @@ categories: jekyll update
 excerpt_separator: <!-- excerpt -->
 
 ---
-Stripe makes it very easy for developers to process payments in their Rails apps. However, models and controllers can easily become overwrought with logic and there's no standard way to organize the different scenarios of charging  a customer. In this post we'll export this logic to a series of chained service objects, each designed to perform one particular task.
+Stripe makes it very easy for developers to process payments in their Rails apps. However, models and controllers can easily become overwrought with logic when there's no standard way to organize the different scenarios of charging  a customer. In this post, we'll export the logic required to create and charge a Stripe Customer to a series of chained service objects.
 <!-- excerpt -->
 #### Setup
 Here's some model setup steps, as well as the payment form for Stripe.

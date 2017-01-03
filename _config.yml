@@ -1,7 +1,7 @@
 title: The Giant Refactor
 author: Manos Fountoulakis
 email: fountoulakismanos@gmail.com
-description: The Giant Refactor is a blog about Rails, Stripe, Js and application development.
+description: The Giant Refactor is a blog about Rails, Stripe, JS, and application development.
 baseurl: "/manos" # the subpath of your site, e.g. /blog
 url: "http://mfountoulakis.github.io" # the base hostname & protocol for your site
 twitter_username: jekyllrb

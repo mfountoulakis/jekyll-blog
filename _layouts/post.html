@@ -7,16 +7,16 @@ comments: true
 
 {% assign words = content | number_of_words %}
 <span class="ttr">
-{% if words < 360 %}
+  {% if words < 360 %}
   1 min read
-{% else %}
+  {% else %}
   {{ words | divided_by:180 }} min read
-{% endif %}
+  {% endif %}
 </span>
 
-<div class="card-panel grey lighten-5 z-depth-1">
+<main>
   {{content}}
-</div>
+</main>
 
 <div id="disqus_thread"></div>
 <script>

@@ -5,16 +5,18 @@ description: The Giant Refactor is a blog about Rails, Stripe, Js and applicatio
 ---
 <div class="row">
   <div class="home col s12">
-    <ul class="post-list">
-      {% for post in paginator.posts %}
-      <li>
-        <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> | <span class="post-title">{{ post.date | date_to_string }}</span>
-      </li>
-      <li>
-        {{ post.excerpt }}
-      </li>
-      {% endfor %}
-    </ul>
+    <div class="card-panel grey lighten-5 z-depth-1">
+      <ul class="post-list">
+        {% for post in paginator.posts %}
+        <li>
+          <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a> | <span class="post-title">{{ post.date | date_to_string }}</span>
+        </li>
+        <li>
+          {{ post.excerpt }}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
     <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
   </div>
 </div>
