@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Giant Refactor</title>
+    <description>The Giant Refactor is a blog about Rails, Stripe, JS, and application development.</description>
+    <link>http://mfountoulakis.github.io/manos/</link>
+    <atom:link href="http://mfountoulakis.github.io/manos/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 05 Jan 2017 15:32:42 -0500</pubDate>
+    <lastBuildDate>Thu, 05 Jan 2017 15:32:42 -0500</lastBuildDate>
+    <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>Storing Credit Cards with Stripe</title>
+        <description>&lt;p&gt;Stripe makes it very easy for developers to process payments in their Rails apps. However, models and controllers can easily become overwrought with logic when there’s no standard way to organize the different scenarios of charging  a customer. In this post, we’ll export the logic required to create and charge a Stripe Customer to a series of chained service objects.
+&lt;!-- excerpt --&gt;&lt;/p&gt;
+&lt;h4 id=&quot;setup&quot;&gt;Setup&lt;/h4&gt;
+&lt;p&gt;Here’s some model setup steps, as well as the payment form for Stripe.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;rails&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;payment&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:references&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stripe_token&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last4&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:string&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;rails&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stripe_customer_id&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:string&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;rails&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;card&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:references&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stripe_token&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last4&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:string&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/142b09b34da642681db68f03bb60f3a5.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;Stripe supplies us with the code to retrieve a token from the Stripe   API once our form is submitted. You can read more about it in the Stripe docs. &lt;a href=&quot;https://stripe.com/docs/custom-form&quot;&gt;https://stripe.com/docs/custom-form&lt;/a&gt;.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;step-1-instantiate-the-new-service&quot;&gt;Step 1: Instantiate the new service&lt;/h4&gt;
+&lt;hr /&gt;
+&lt;p&gt;The payment controller will handle the token sent from our payment form. After the payment is saved we’ll Instantiate our new service.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@payment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Payment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;payment_params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@payment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;save&lt;/span&gt;    
+    &lt;span class=&quot;no&quot;&gt;CreateStripeCustomerService&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@payment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/ef042c009f3d53675979a31e194a8739.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;step-2-create-a-new-stripe-customer&quot;&gt;Step 2: Create a new Stripe customer&lt;/h4&gt;
+&lt;hr /&gt;
+&lt;p&gt;When the &lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;CreateStripeCustomer&lt;/code&gt;&lt;/strong&gt; service is instantiated, it is passed the payment instance as an argument. Since we’re not calling a specific method, we’ll call the method &lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;create_customer&lt;/code&gt;&lt;/strong&gt; in the &lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;CreateStripeCustomer&lt;/code&gt;&lt;/strong&gt; service initialize method.&lt;/p&gt;
+
+&lt;p&gt;The CreateCustomer service has two responsibilities:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Create a new customer if the user’s &lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;stripe_customer_id&lt;/code&gt;&lt;/strong&gt; is blank.&lt;/li&gt;
+  &lt;li&gt;send the payment to the &lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ChargeCreditCard&lt;/code&gt;&lt;/strong&gt; service.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Once the customer is created and &lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;stripe_customer_id&lt;/code&gt;&lt;/strong&gt; is assigned to the user, the new service is instantiated, passing the payment as an argument, and calling the method &lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;charge_or_create_card&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;ChargeCreditCard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;payment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@payment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;charge_or_create_card&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/5345fa9f722459db6814e32c2fd57009.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;step-3-charging-the-credit-card&quot;&gt;Step 3: Charging the credit card.&lt;/h4&gt;
+&lt;hr /&gt;
+&lt;p&gt;Finally, we can charge the user’s credit card. On line 12, we’ll find out if the Stripe token has been used. If not, it will be added to the customer’s payment sources. Since Stripe tokens can only be used once, we’ll be charging the card associated with the Stripe token (the source object), instead of the card token itself. The initialize method of our &lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ChargeCreditCard&lt;/code&gt;&lt;/strong&gt; service retrieves the card id from the Stripe API and stores it in a variable.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;vi&quot;&gt;@card&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Stripe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;retrieve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@payment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;stripe_token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;card&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;id&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/9129aef9d2ccfd646ce4a876fe9bac59.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;step-4-create-a-card-record&quot;&gt;Step 4: Create a card record&lt;/h4&gt;
+&lt;hr /&gt;
+&lt;p&gt;Our final service finds or creates a card record based on the payment’s stripe token. This will allow us to display the card to the user in the payments form. We’ll store the stripe token once again in the card record. Alternatively, you could save the card id directly instead of retrieving it from the token.&lt;/p&gt;
+
+&lt;noscript&gt;&lt;pre&gt;400: Invalid request
+&lt;/pre&gt;&lt;/noscript&gt;
+&lt;script src=&quot;https://gist.github.com/c4886502a9e6c90285b5bd46ce1459fb.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;step-5-display-the-cards-to-the-user&quot;&gt;Step 5: Display the cards to the user.&lt;/h4&gt;
+&lt;hr /&gt;
+&lt;p&gt;Display the user’s cards in the payments form with radio buttons.&lt;/p&gt;
+&lt;div class=&quot;language-erb highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- #app/views/payments/_form.html.erb --&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;form-row&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@cards&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@cards&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;card&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;radio_button&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;payment&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;stripe_token&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;card&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;stripe_token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label_tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:card&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;card&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;last4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;cp&quot;&gt;&amp;lt;%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Thu, 29 Dec 2016 23:01:00 -0500</pubDate>
+        <link>http://mfountoulakis.github.io/manos/jekyll/update/2016/12/29/storing-credit-cards-with-stripe.html</link>
+        <guid isPermaLink="true">http://mfountoulakis.github.io/manos/jekyll/update/2016/12/29/storing-credit-cards-with-stripe.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+  </channel>
+</rss>

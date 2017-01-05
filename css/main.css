@@ -1,0 +1,40 @@
+section.hero {
+  z-index: 1;
+  color: #ffffff;
+  height: 300px;
+  margin: 0px 0px 50px 0px;
+  padding: 50px 0px 50px 0px; }
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column; }
+
+main {
+  flex: 1 0 auto; }
+
+nav ul a {
+  color: #ffa726; }
+
+strong {
+  font-weight: bold; }
+
+nav.main-nav.shadow {
+  position: relative; }
+
+.page-margin {
+  margin-top: 100px;
+  margin-bottom: 100px; }
+
+span.post-title {
+  color: #828282;
+  font-size: 16px; }
+
+h2 {
+  color: #ffa726; }
+
+a {
+  color: #00bcd4; }
+
+.ttr {
+  color: #828282; }
