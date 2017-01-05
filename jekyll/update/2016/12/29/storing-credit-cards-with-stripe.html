@@ -8,8 +8,8 @@
 <meta property="og:title" content="Storing Credit Cards with Stripe" />
 <meta name="description" content="Stripe makes it very easy for developers to process payments in their Rails apps. However, models and controllers can easily become overwrought with logic when there’s no standard way to organize the different scenarios of charging  a customer. In this post, we’ll export the logic required to create and charge a Stripe Customer to a series of chained service objects." />
 <meta property="og:description" content="Stripe makes it very easy for developers to process payments in their Rails apps. However, models and controllers can easily become overwrought with logic when there’s no standard way to organize the different scenarios of charging  a customer. In this post, we’ll export the logic required to create and charge a Stripe Customer to a series of chained service objects." />
-<link rel="canonical" href="http://mfountoulakis.github.io/manos/jekyll/update/2016/12/29/storing-credit-cards-with-stripe.html" />
-<meta property="og:url" content="http://mfountoulakis.github.io/manos/jekyll/update/2016/12/29/storing-credit-cards-with-stripe.html" />
+<link rel="canonical" href="http://mfountoulakis.github.io/jekyll/update/2016/12/29/storing-credit-cards-with-stripe.html" />
+<meta property="og:url" content="http://mfountoulakis.github.io/jekyll/update/2016/12/29/storing-credit-cards-with-stripe.html" />
 <meta property="og:site_name" content="The Giant Refactor" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2016-12-29T23:01:00-05:00" />
@@ -20,20 +20,20 @@
     "headline": "Storing Credit Cards with Stripe",
     "datePublished": "2016-12-29T23:01:00-05:00",
     "description": "Stripe makes it very easy for developers to process payments in their Rails apps. However, models and controllers can easily become overwrought with logic when there’s no standard way to organize the different scenarios of charging  a customer. In this post, we’ll export the logic required to create and charge a Stripe Customer to a series of chained service objects.",
-    "url": "http://mfountoulakis.github.io/manos/jekyll/update/2016/12/29/storing-credit-cards-with-stripe.html"
+    "url": "http://mfountoulakis.github.io/jekyll/update/2016/12/29/storing-credit-cards-with-stripe.html"
   }
 </script>
 <!-- End Jekyll SEO tag -->
   <title>Storing Credit Cards with Stripe</title>
-  <link rel="stylesheet" href="/manos/vendor/css/materialize.min.css">
-  <link rel="stylesheet" href="/manos/css/main.css">
-  <link rel="stylesheet" href="/manos/css/syntax.css">
-  <link rel="import" href="/manos/vendor/icons/social-media-icons.html">
+  <link rel="stylesheet" href="/vendor/css/materialize.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="import" href="/vendor/icons/social-media-icons.html">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.7/webcomponents-lite.min.js"></script>
-  <script src="/manos/vendor/js/jquery.min.js"></script>
-  <script src="/manos/vendor/js/materialize.min.js"></script>
+  <script src="/vendor/js/jquery.min.js"></script>
+  <script src="/vendor/js/materialize.min.js"></script>
 </head>
 <body>
   <header>
@@ -47,9 +47,9 @@
             </div>
             <span class="orange-text name">The Giant Refactor</span>
           </div></li>
-          <li ><a href="/manos/">Home</a></li>
-          <li ><a href="/manos/blog.html">Archive</a></li>
-          <li ><a href="/manos/about.html">About</a></li>
+          <li ><a href="/">Home</a></li>
+          <li ><a href="/blog.html">Archive</a></li>
+          <li ><a href="/about.html">About</a></li>
         </ul>
         <ul>
           <li>
@@ -69,9 +69,9 @@
               <li><a href="https://open.spotify.com/user/cheeseontoasty"><social-media-icons icon="spotify" color="#ffa726" size="25"></social-media-icons></a></li>
             </ul>
             <ul>
-              <li ><a href="/manos/">Home</a></li>
-              <li ><a href="/manos/blog.html">Archive</a></li>
-              <li ><a href="/manos/about.html">About</a></li>
+              <li ><a href="/">Home</a></li>
+              <li ><a href="/blog.html">Archive</a></li>
+              <li ><a href="/about.html">About</a></li>
             </ul>
           </div>
         </div>

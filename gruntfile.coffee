@@ -98,7 +98,6 @@ module.exports = (grunt) ->
           serve: true
           port: 4000
           base: '_site'
-          baseurl: '/manos'
 
   grunt.registerTask "build", [
     "copy"

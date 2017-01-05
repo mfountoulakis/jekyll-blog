@@ -3,10 +3,10 @@
   <channel>
     <title>The Giant Refactor</title>
     <description>The Giant Refactor is a blog about Rails, Stripe, JS, and application development.</description>
-    <link>http://mfountoulakis.github.io/manos/</link>
-    <atom:link href="http://mfountoulakis.github.io/manos/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 05 Jan 2017 15:32:42 -0500</pubDate>
-    <lastBuildDate>Thu, 05 Jan 2017 15:32:42 -0500</lastBuildDate>
+    <link>http://mfountoulakis.github.io/</link>
+    <atom:link href="http://mfountoulakis.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 05 Jan 2017 15:34:32 -0500</pubDate>
+    <lastBuildDate>Thu, 05 Jan 2017 15:34:32 -0500</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
@@ -101,8 +101,8 @@
 &lt;/div&gt;
 </description>
         <pubDate>Thu, 29 Dec 2016 23:01:00 -0500</pubDate>
-        <link>http://mfountoulakis.github.io/manos/jekyll/update/2016/12/29/storing-credit-cards-with-stripe.html</link>
-        <guid isPermaLink="true">http://mfountoulakis.github.io/manos/jekyll/update/2016/12/29/storing-credit-cards-with-stripe.html</guid>
+        <link>http://mfountoulakis.github.io/jekyll/update/2016/12/29/storing-credit-cards-with-stripe.html</link>
+        <guid isPermaLink="true">http://mfountoulakis.github.io/jekyll/update/2016/12/29/storing-credit-cards-with-stripe.html</guid>
         
         
         <category>jekyll</category>
