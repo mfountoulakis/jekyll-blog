@@ -5,6 +5,18 @@ section.hero {
   margin: 0px 0px 50px 0px;
   padding: 50px 0px 50px 0px; }
 
+.card-image {
+  height: 100px;
+  background: url("/images/ac.png") center;
+  background-color: rgba(0, 0, 0, 0.5); }
+
+.card .card-action a.card-action-link {
+  margin: 0 !important; }
+
+.card .card-image .card-title {
+  font-weight: 600;
+  color: #263238; }
+
 body {
   display: flex;
   min-height: 100vh;
@@ -31,7 +43,7 @@ span.post-title {
   font-size: 16px; }
 
 h2 {
-  color: #ffa726; }
+  color: #263238; }
 
 a {
   color: #00bcd4; }
