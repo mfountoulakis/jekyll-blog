@@ -5,8 +5,8 @@
     <description>The Giant Refactor is a blog about Rails, Stripe, JS, and application development.</description>
     <link>http://mfountoulakis.github.io/</link>
     <atom:link href="http://mfountoulakis.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 05 Jan 2017 15:34:32 -0500</pubDate>
-    <lastBuildDate>Thu, 05 Jan 2017 15:34:32 -0500</lastBuildDate>
+    <pubDate>Thu, 05 Jan 2017 21:35:54 -0500</pubDate>
+    <lastBuildDate>Thu, 05 Jan 2017 21:35:54 -0500</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
@@ -65,7 +65,7 @@
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h4 id=&quot;step-3-charging-the-credit-card&quot;&gt;Step 3: Charging the credit card.&lt;/h4&gt;
 &lt;hr /&gt;
-&lt;p&gt;Finally, we can charge the user’s credit card. On line 12, we’ll find out if the Stripe token has been used. If not, it will be added to the customer’s payment sources. Since Stripe tokens can only be used once, we’ll be charging the card associated with the Stripe token (the source object), instead of the card token itself. The initialize method of our &lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ChargeCreditCard&lt;/code&gt;&lt;/strong&gt; service retrieves the card id from the Stripe API and stores it in a variable.&lt;/p&gt;
+&lt;p&gt;Finally, we can charge the user’s credit card. On line 12, we’ll find out if the Stripe token has been used. If not, it will be added to the customer’s payment sources. Since Stripe tokens can only be used once, we’ll be charging the card associated with the Stripe token (the source object), instead of the card token itself. The initialize method of our &lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ChargeCreditCard&lt;/code&gt;&lt;/strong&gt; service retrieves the card id from the Stripe API and stores it in the variable &lt;code class=&quot;highlighter-rouge&quot;&gt;@card&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;vi&quot;&gt;@card&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Stripe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;retrieve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@payment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;stripe_token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;card&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;id&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;

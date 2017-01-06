@@ -79,11 +79,10 @@
     </div>
   </header>
   <!-- <div class="content container"> -->
-  <div class="flow-text">
-    <main>
-  <div class="content container page-margin">
-    <main>
-      <h2>Storing Credit Cards with Stripe</h2>
+  <main>
+    <div class="flow-text">
+      <div class="content container page-margin">
+  <h2>Storing Credit Cards with Stripe</h2>
 
 
 <span class="ttr">
@@ -92,8 +91,7 @@
   
 </span>
 
-<main>
-  <p>Stripe makes it very easy for developers to process payments in their Rails apps. However, models and controllers can easily become overwrought with logic when there’s no standard way to organize the different scenarios of charging  a customer. In this post, we’ll export the logic required to create and charge a Stripe Customer to a series of chained service objects.
+<p>Stripe makes it very easy for developers to process payments in their Rails apps. However, models and controllers can easily become overwrought with logic when there’s no standard way to organize the different scenarios of charging  a customer. In this post, we’ll export the logic required to create and charge a Stripe Customer to a series of chained service objects.
 <!-- excerpt --></p>
 <h4 id="setup">Setup</h4>
 <p>Here’s some model setup steps, as well as the payment form for Stripe.</p>
@@ -147,7 +145,7 @@
 <p><br /></p>
 <h4 id="step-3-charging-the-credit-card">Step 3: Charging the credit card.</h4>
 <hr />
-<p>Finally, we can charge the user’s credit card. On line 12, we’ll find out if the Stripe token has been used. If not, it will be added to the customer’s payment sources. Since Stripe tokens can only be used once, we’ll be charging the card associated with the Stripe token (the source object), instead of the card token itself. The initialize method of our <strong><code class="highlighter-rouge">ChargeCreditCard</code></strong> service retrieves the card id from the Stripe API and stores it in a variable.</p>
+<p>Finally, we can charge the user’s credit card. On line 12, we’ll find out if the Stripe token has been used. If not, it will be added to the customer’s payment sources. Since Stripe tokens can only be used once, we’ll be charging the card associated with the Stripe token (the source object), instead of the card token itself. The initialize method of our <strong><code class="highlighter-rouge">ChargeCreditCard</code></strong> service retrieves the card id from the Stripe API and stores it in the variable <code class="highlighter-rouge">@card</code>.</p>
 
 <div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="vi">@card</span> <span class="o">=</span> <span class="no">Stripe</span><span class="o">::</span><span class="no">Token</span><span class="p">.</span><span class="nf">retrieve</span><span class="p">(</span><span class="vi">@payment</span><span class="p">.</span><span class="nf">stripe_token</span><span class="p">).</span><span class="nf">card</span><span class="p">.</span><span class="nf">id</span>
 </code></pre>
@@ -182,8 +180,6 @@
 </code></pre>
 </div>
 
-</main>
-
 <div id="disqus_thread"></div>
 <script>
 
@@ -205,12 +201,10 @@ s.setAttribute('data-timestamp', +new Date());
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
-    </main>
-  </div>
-</main>
+</div>
 
+    </div>
   </main>
-  <!-- </div> -->
   <footer class="page-footer orange lighten-1">
     <div class="container">
       <div class="row">
