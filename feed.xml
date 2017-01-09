@@ -3,10 +3,10 @@
   <channel>
     <title>The Giant Refactor</title>
     <description>The Giant Refactor is a blog about Rails, Stripe, JS, and application development.</description>
-    <link>http://mfountoulakis.github.io/</link>
-    <atom:link href="http://mfountoulakis.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 06 Jan 2017 11:10:59 -0500</pubDate>
-    <lastBuildDate>Fri, 06 Jan 2017 11:10:59 -0500</lastBuildDate>
+    <link>http://thegiantrefactor.com/</link>
+    <atom:link href="http://thegiantrefactor.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 09 Jan 2017 15:28:49 -0500</pubDate>
+    <lastBuildDate>Mon, 09 Jan 2017 15:28:49 -0500</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
@@ -123,8 +123,8 @@
 &lt;/div&gt;
 </description>
         <pubDate>Thu, 29 Dec 2016 23:01:00 -0500</pubDate>
-        <link>http://mfountoulakis.github.io/jekyll/update/2016/12/29/storing-credit-cards-with-stripe.html</link>
-        <guid isPermaLink="true">http://mfountoulakis.github.io/jekyll/update/2016/12/29/storing-credit-cards-with-stripe.html</guid>
+        <link>http://thegiantrefactor.com/jekyll/update/2016/12/29/storing-credit-cards-with-stripe.html</link>
+        <guid isPermaLink="true">http://thegiantrefactor.com/jekyll/update/2016/12/29/storing-credit-cards-with-stripe.html</guid>
         
         
         <category>jekyll</category>
