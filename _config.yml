@@ -3,7 +3,7 @@ author: Manos Fountoulakis
 email: fountoulakismanos@gmail.com
 description: The Giant Refactor is a blog about Rails, Stripe, JS, and application development.
 #baseurl: "/manos" 
-url: "http://thegiantrefactor.com/" # the base hostname & protocol for your site
+url: "http://thegiantrefactor.com" # the base hostname & protocol for your site
 twitter_username: jekyllrb
 github_username:  jekyll
 paginate: 5
